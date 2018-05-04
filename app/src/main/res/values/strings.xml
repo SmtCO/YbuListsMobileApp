@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Ybu Lists</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="announcenments_fragment">Announcenment</string>
+    <string name="news_fragment">News</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
