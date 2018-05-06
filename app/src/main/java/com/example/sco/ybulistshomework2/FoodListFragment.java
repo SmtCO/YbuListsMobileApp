@@ -22,7 +22,7 @@ public class FoodListFragment extends Fragment {
     TextView textView = null;
 
     public FoodListFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -33,8 +33,8 @@ public class FoodListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_food_list, container, false);
 
         textView = (TextView) view.findViewById(R.id.foodlist);
@@ -42,25 +42,25 @@ public class FoodListFragment extends Fragment {
         new DataGrabber().execute();
 
 
+
         return view;
     }
-    //New class for the Asynctask, where the data will be fetched in the background
+
+
     private class DataGrabber extends AsyncTask<Void, Void, Void> {
 
         private String textContent="";
         @Override
         protected Void doInBackground(Void... params) {
-            // NO CHANGES TO UI TO BE DONE HERE
+
+
             try {
                 doc = Jsoup.connect(url).get();
                 Element table = doc.select("table").get(1);
-                Iterator<Element> ite = table.select("td").iterator();
+                Iterator<Element> ite = table.select("font").iterator();
                 int counter =0;
                 while(ite.hasNext()){
-                    if(counter==0){
-                        ite.next().text(); //first one is image, skip it
-                        counter++;
-                    } else textContent+=ite.next().text()+"\n";
+                    textContent+=ite.next().text()+"\n";
                 }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -71,9 +71,8 @@ public class FoodListFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void result) {
-            //This is where we update the UI with the acquired data
+
             if (doc != null){
-                //textView.setText(doc.title().toString());
                 textView.setText(textContent);
             }else{
                 textView.setText("FAILURE");

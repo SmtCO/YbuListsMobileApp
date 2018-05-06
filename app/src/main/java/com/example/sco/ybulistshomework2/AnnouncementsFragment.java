@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -27,7 +25,6 @@ import java.util.Iterator;
 
 public class AnnouncementsFragment extends Fragment {
 
-    private Activity activity;
     private View view;
 
     String url = "http://www.ybu.edu.tr/muhendislik/bilgisayar";
@@ -38,7 +35,7 @@ public class AnnouncementsFragment extends Fragment {
     ArrayList arrayListLinks;
 
     public AnnouncementsFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -48,7 +45,7 @@ public class AnnouncementsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
 
         view = inflater.inflate(R.layout.fragment_announcements, container, false);
         textView = (TextView) view.findViewById(R.id.announcements);
@@ -72,14 +69,12 @@ public class AnnouncementsFragment extends Fragment {
         return view;
     }
 
-    //New class for the Asynctask, where the data will be fetched in the background
+
     private class DataGrabber extends AsyncTask<Void, Void, Void> {
 
-        private String textContent="";
-        private String textLinks="";
         @Override
         protected Void doInBackground(Void... params) {
-            // NO CHANGES TO UI TO BE DONE HERE
+
             try {
                 doc = Jsoup.connect(url).get();
                 Elements text = doc.select("div.contentAnnouncements");
@@ -88,11 +83,10 @@ public class AnnouncementsFragment extends Fragment {
 
                 while(ites.hasNext()){
                     arrayListTexts.add(ites.next().text());
-                    //textContent+=ites.next().text()+"\n";
+
                 }
                 while(links.hasNext()){
                     arrayListLinks.add(links.next().attr("href"));
-                    //textLinks+=links.next().attr("href")+"\n";
                 }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
